@@ -42,7 +42,20 @@ class User extends Authenticatable
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',
+            'password'          => 'hashed',
         ];
+    }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $search = $filters['search'] ?? false;
+
+        $query->when($search, function ($query, $search) {
+            $query->where(function ($query) use ($search) {
+                $query
+                    ->whereLike('name', "%$search%")
+                    ->orWhereLike('email', "%$search%");
+            });
+        });
     }
 }
