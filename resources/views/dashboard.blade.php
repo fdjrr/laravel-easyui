@@ -8,38 +8,37 @@
         </thead>
     </table>
     <div id="toolbar">
-        <table style="width:100%" cellpadding="0" cellspacing="0">
-            <tr>
-                <td style="padding-left:2px">
-                    <a class="easyui-linkbutton" href="javascript:void(0)" iconCls="icon-add" plain="true" onclick="newUser()">New User</a>
-                    <a class="easyui-linkbutton" href="javascript:void(0)" iconCls="icon-edit" plain="true" onclick="editUser()">Edit User</a>
-                    <a class="easyui-linkbutton" href="javascript:void(0)" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove User</a>
-                </td>
-                <td style="text-align:right;padding-right:2px">
-                    <input class="easyui-searchbox" id="search" data-options="prompt:'Search',searcher:doSearch" style="width:300px">
-                </td>
-            </tr>
-        </table>
+        <div class="flex flex-col items-center p-2 sm:flex-row sm:justify-between">
+            <div>
+                <a class="easyui-linkbutton" href="javascript:void(0)" iconCls="icon-add" plain="true" onclick="newUser()">New User</a>
+                <a class="easyui-linkbutton" href="javascript:void(0)" iconCls="icon-edit" plain="true" onclick="editUser()">Edit User</a>
+                <a class="easyui-linkbutton" href="javascript:void(0)" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove User</a>
+            </div>
+            <div>
+                <input class="easyui-searchbox w-[300px]" id="search" data-options="prompt:'Search',searcher:doSearch">
+            </div>
+        </div>
     </div>
 
-    <div class="easyui-dialog" id="dlg" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'" style="width:400px">
-        <form id="fm" style="margin:0;padding:0px 10px" method="post" novalidate>
-            <div style="margin-bottom:10px">
-                <input class="easyui-textbox" name="name" style="width:100%" required="true" labelPosition="top" label="Name:">
+    <div class="easyui-dialog w-[400px]" id="dlg" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
+        <form class="px-3" id="fm" method="post" novalidate>
+            <div class="mb-3">
+                <input class="easyui-textbox" name="name" style="width: 100%" required="true" labelPosition="top" label="Name:">
             </div>
-            <div style="margin-bottom:10px">
-                <input class="easyui-textbox" name="email" style="width:100%" required="true" labelPosition="top" validType="email" label="Email:">
+            <div class="mb-3">
+                <input class="easyui-textbox" name="email" style="width: 100%" required="true" labelPosition="top" validType="email" label="Email:">
             </div>
-            <div style="margin-bottom:10px">
-                <input class="easyui-textbox" name="password" type="password" style="width:100%" labelPosition="top" validType="length[8, 32]" label="Password:">
+            <div class="mb-3">
+                <input class="easyui-textbox" name="password" type="password" style="width: 100%" labelPosition="top" validType="length[8, 32]" label="Password:">
             </div>
         </form>
     </div>
     <div id="dlg-buttons">
-        <a class="easyui-linkbutton c6" href="javascript:void(0)" style="width:90px" iconCls="icon-ok" onclick="saveUser()">Save</a>
-        <a class="easyui-linkbutton" href="javascript:void(0)" style="width:90px" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancel</a>
+        <a class="easyui-linkbutton c6 w-[90px]" href="javascript:void(0)" iconCls="icon-ok" onclick="saveUser()">Save</a>
+        <a class="easyui-linkbutton w-[90px]" href="javascript:void(0)" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancel</a>
     </div>
-    <script type="text/javascript">
+
+    <script>
         function doSearch() {
             $('#dg').datagrid('load', {
                 search: $('#search').val()

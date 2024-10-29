@@ -14,8 +14,13 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body>
-    {{ $slot }}
+<body class="easyui-layout">
+    <div data-options="region:'west',split:true" title="{{ config('app.name') }}" style="width:200px;">
+        <x-sidebar />
+    </div>
+    <div data-options="region:'center'">
+        {{ $slot }}
+    </div>
 
     <script src="{{ asset('easyui/jquery.min.js') }}"></script>
     <script src="{{ asset('easyui/jquery.easyui.min.js') }}"></script>
