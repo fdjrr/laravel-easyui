@@ -1,4 +1,4 @@
-<div style="padding: 10px">
+<div class="h-full p-2">
     <table class="easyui-datagrid" id="dg"></table>
     <div id="toolbar">
         <div class="flex flex-col items-center p-2 sm:flex-row sm:justify-between">
@@ -16,18 +16,18 @@
             </div>
         </div>
     </div>
-    <div class="easyui-dialog" id="dlg" data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'"
-        style="width:400px">
-        <form id="fm" style="margin:0;padding:20px 50px" method="post" novalidate>
-            <div style="margin-bottom:10px">
+    <div class="easyui-dialog w-[400px]" id="dlg"
+        data-options="closed:true,modal:true,border:'thin',buttons:'#dlg-buttons'">
+        <form class="px-3" id="fm" method="post" novalidate>
+            <div class="mb-3">
                 <input class="easyui-textbox" name="name" style="width: 100%" required="true" labelPosition="top"
                     label="Name:">
             </div>
-            <div style="margin-bottom:10px">
+            <div class="mb-3">
                 <input class="easyui-textbox" name="email" style="width: 100%" required="true" labelPosition="top"
                     validType="email" label="Email:">
             </div>
-            <div style="margin-bottom:10px">
+            <div class="mb-3">
                 <input class="easyui-textbox" name="password" type="password" style="width: 100%" labelPosition="top"
                     validType="length[8, 32]" label="Password:">
             </div>
@@ -47,8 +47,8 @@
             url: '/api/v1/users',
             method: 'get',
             toolbar: '#toolbar',
-            pagination: "#pagination",
-            // pagination: true,
+            pagination: true,
+            fit: true,
             rownumbers: true,
             fitColumns: true,
             singleSelect: true,
