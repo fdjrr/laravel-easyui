@@ -11,19 +11,41 @@
     <link href="{{ asset('easyui/themes/icon.css') }}" rel="stylesheet">
     <link href="{{ asset('easyui/themes/color.css') }}" rel="stylesheet">
 
+    <script src="{{ asset('easyui/jquery.min.js') }}"></script>
+    <script src="{{ asset('easyui/jquery.easyui.min.js') }}"></script>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="easyui-layout">
-    <div data-options="region:'west',split:true" title="{{ config('app.name') }}" style="width:200px;">
+    <div data-options="region:'north',border:false" style="height:40px;padding:6px">
+        <x-navbar />
+    </div>
+    <div data-options="region:'west',split:true,collapsed:false,title:'Navigasi'" style="width:200px;padding:10px;">
         <x-sidebar />
     </div>
-    <div data-options="region:'center'">
-        {{ $slot }}
+
+    <!-- Content -->
+    <div data-options="region:'center',title:''">
+        <div class="easyui-tabs tabs-content" id="tabContent"
+            data-options="fit:true,border:false,plain:true,cache:true">
+            {{ $slot }}
+        </div>
     </div>
 
-    <script src="{{ asset('easyui/jquery.min.js') }}"></script>
-    <script src="{{ asset('easyui/jquery.easyui.min.js') }}"></script>
+    <script>
+        function loadContent(title, url) {
+            if ($("#tabContent").tabs("exists", title)) {
+                $("#tabContent").tabs("select", title);
+            } else {
+                $("#tabContent").tabs("add", {
+                    title: title,
+                    closable: true,
+                    href: url,
+                });
+            }
+        }
+    </script>
 </body>
 
 </html>
